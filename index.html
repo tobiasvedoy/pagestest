@@ -3,118 +3,515 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>pears.gay</title>
+    <title>pears.gay ~ terminal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body, html {
+        :root {
+            --bg: #1a1a1a;
+            --text: #f0f0f0;
+            --primary: #4CAF50;
+            --secondary: #FF9800;
+            --accent: #9C27B0;
+            --error: #F44336;
+            --cursor: #00FF00;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Courier New', monospace;
+            line-height: 1.5;
             margin: 0;
-            padding: 0;
-            font-family: 'Courier New', Courier, monospace;
-            background-color: #000;
-            color: #0f0;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .terminal {
-            width: 80%;
-            max-width: 800px;
-            height: 80vh;
-            border: 1px solid #0f0;
             padding: 20px;
-            overflow-y: auto;
-            position: relative;
+            overflow-x: hidden;
         }
+
+        #terminal {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        #header {
+            margin-bottom: 20px;
+            color: var(--primary);
+            white-space: pre;
+            font-weight: bold;
+            line-height: 1.2;
+        }
+
+        #output {
+            margin-bottom: 10px;
+            min-height: 300px;
+        }
+
+        .command-line {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
         .prompt {
-            color: #0ff;
+            color: var(--primary);
+            margin-right: 10px;
+            white-space: nowrap;
         }
+
+        #input {
+            background-color: transparent;
+            border: none;
+            color: var(--text);
+            font-family: 'Courier New', monospace;
+            font-size: inherit;
+            width: 100%;
+            outline: none;
+            caret-color: var(--cursor);
+        }
+
         .command {
-            color: #fff;
+            margin-bottom: 15px;
         }
-        .output {
+
+        .command .input {
+            color: var(--secondary);
+        }
+
+        .command .output {
             margin-top: 5px;
+            margin-left: 20px;
         }
-        .cursor {
-            animation: blink-caret 0.75s step-end infinite;
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
         }
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: #0f0; }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .error {
+            color: var(--error);
+        }
+
+        .success {
+            color: var(--primary);
+        }
+
+        .warning {
+            color: var(--secondary);
+        }
+
+        .info {
+            color: #2196F3;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .social-links a {
+            color: var(--text);
+            font-size: 1.2em;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .pear-art {
+            color: var(--primary);
+            white-space: pre;
+            line-height: 1;
+            margin: 10px 0;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            
+            #header {
+                font-size: 0.8em;
+            }
+            
+            .pear-art {
+                font-size: 0.7em;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="terminal">
-        <div id="content">
-            <div class="prompt">user@pears.gay:~$</div>
-            <div class="command">Welcome to pears.gay</div>
-            <div class="output">Type 'help' to see available commands.</div>
+    <div id="terminal">
+        <div id="header">           
+  _ __   ___  __ _ _ __ ___        __ _  __ _ _   _ 
+ | '_ \ / _ \/ _` | '__/ __|      / _` |/ _` | | | |
+ | |_) |  __/ (_| | |  \__ \  _  | (_| | (_| | |_| |
+ | .__/ \___|\__,_|_|  |___/ (_)  \__, |\__,_|\__, |
+ | |                               __/ |       __/ |
+ |_|                              |___/       |___/
         </div>
-        <div class="prompt cursor">user@pears.gay:~$</div>
-        <input type="text" id="cli-input" autocomplete="off" autofocus>
+
+        <div id="output">
+            <div class="command">
+                <div class="input">Welcome to pears.gay! Type 'help' to see available commands.</div>
+            </div>
+            <div class="command">
+                <div class="output">
+                    <div class="pear-art">
+⠀⠀⣀⣠⣀⣀⣴⣾⣷⣶⡦⢄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⣿⣿⡷⣮⣿⡿⡻⡮⠛⣦⠑⢤⣀⣀⢀⢆⡔⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⡀⠘⣯⠬⠮⢽⡟⠋⠉⠉⠓⣄⠘⣿⡿⢻⣿⡂⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠉⣾⣾⠃⠀⠀⡾⠀⠀⠀⠀⢀⣸⣆⣈⠀⣵⣿⣷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⣼⣿⡖⠤⠤⢾⣤⠴⠖⠋⢁⡼⠁⠠⢙⣆⢀⣾⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⣿⣹⠛⠒⢲⣧⣝⡓⠒⣒⣩⠖⠃⠀⢺⠇⠉⠻⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⣿⢧⢀⠀⠋⠀⠀⠉⠉⠁⠀⠀⠘⠛⠉⠀⣶⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠈⢿⣷⠒⣽⡄⠀⠀⠀⠀⢠⣴⣾⣀⣾⣦⡼⡿⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠉⠛⠿⢷⡄⠀⠀⠀⠀⠀⠀⠉⠁⠀⢠⣾⣿⣤⡀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⡜⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠉⠀⣿⡿⢦⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⢰⠃⠀⠀⠀⠀⠀⠀⠀⢀⣴⡶⢻⣶⣼⠉⢀⣸⣧⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⣼⠀⠀⠀⢷⠀⢰⠏⠀⡞⠻⠇⠘⠁⠀⠀⠻⠟⢿⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⡴⣿⢀⣤⠴⠇⠀⠸⣄⣸⡿⠆⠀⠀⠀⠀⠀⢠⣴⣿⣀⣤⡶⣤⡀
+⠀⠀⠀⢸⢹⠹⡿⡿⢰⠂⢠⠞⡩⠉⡛⠀⠀⠀⠀⠀⠀⣠⣼⠿⠯⠽⠀⢉⣷
+⠀⠀⠀⠚⠛⠓⠻⣷⣼⣦⣼⣼⡁⢸⠀⠀⣀⠀⢀⠤⣾⣿⣭⠀⠀⠀⠀⢙⡟
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠛⠛⠛⠛⠉⠉⠉⠁⠀⣘⣿⣿⣀⣀⣀⣤⡾⠁
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠀⠀⠀⠀
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="command-line">
+            <span class="prompt">visitor@pears.gay:~$</span>
+            <input type="text" id="input" autofocus>
+        </div>
     </div>
 
     <script>
-        const commands = {
-            help: `
-                available commands:
-                - about: learn more about pears.gay
-                - contact: get contact information
-                - projects: view our projects
-                - clear: clear the terminal
-                - exit: exit the terminal
-            `,
-            about: `
-                pears.gay is owned by @peargobbler on twitter
-            `,
-            contact: `
-                contact us at:
-                email: nerokoshki@gmail
-                twitter: @peargobbler
-            `,
-            projects: `
-                (under construction)
-            `,
-            clear: () => {
-                document.getElementById('content').innerHTML = '';
-                return '';
-            },
-            exit: () => {
-                alert('Thank you for visiting pears.gay!');
-                window.close();
-            }
-        };
-
-        const inputField = document.getElementById('cli-input');
-        inputField.addEventListener('keydown', function(event) {
-            if (event.key === 'Enter') {
-                const command = inputField.value.trim().toLowerCase();
-                const response = executeCommand(command);
-                appendToTerminal(`user@pears.gay:~$ <span class="command">${command}</span>`);
-                if (response) {
-                    appendToTerminal(`<div class="output">${response}</div>`);
+        document.addEventListener('DOMContentLoaded', function() {
+            const input = document.getElementById('input');
+            const output = document.getElementById('output');
+            
+            let commandHistory = [];
+            let historyIndex = -1;
+            
+            // Available commands
+            const commands = {
+                'help': {
+                    description: 'Show this help message',
+                    execute: () => showHelp()
+                },
+                'about': {
+                    description: 'About this website',
+                    execute: () => about()
+                },
+                'social': {
+                    description: 'Show social media links',
+                    execute: () => social()
+                },
+                'pear': {
+                    description: 'Display a random pear fact',
+                    execute: () => pearFact()
+                },
+                'clear': {
+                    description: 'Clear the terminal',
+                    execute: () => clearTerminal()
+                },
+                'echo': {
+                    description: 'Echo back the input',
+                    execute: (args) => echo(args)
+                },
+                'ls': {
+                    description: 'List directory contents',
+                    execute: () => ls()
+                },
+                'whoami': {
+                    description: 'Show current user',
+                    execute: () => whoami()
+                },
+                'date': {
+                    description: 'Show current date and time',
+                    execute: () => date()
+                },
+                'theme': {
+                    description: 'Change terminal theme (light/dark/retro)',
+                    execute: (args) => changeTheme(args)
+                },
+                'exit': {
+                    description: 'Close the tab',
+                    execute: () => exit()
                 }
-                inputField.value = '';
+            };
+            
+            // ASCII art variations
+            const pearArts = [
+                `
+    ,-~~-.___.
+   / |  '     \\          .-.
+  (  )         0        (   )
+   \\_/-, ,----'         \`-'
+      ====           // 
+     /  \\-'~;    /~~~(O)
+    /  __/~|   /       |    
+  =(  _____| (_________|
+                `,
+                `
+       (
+        )
+       (
+     .-""-.
+    /       \\
+    \\       /
+     '.___.'
+       | |
+      /   \\
+     |     |
+     |     |
+     '-----'
+                `,
+                `
+     _._
+    // \
+   ||   |
+   \\___/
+    | |
+   /   \\
+  |     |
+  |     |
+  '-----'
+                `
+            ];
+            
+            // Pear facts
+            const pearFacts = [
+                "Pears are one of the few fruits that don't ripen well on the tree.",
+                "There are over 3,000 varieties of pears grown worldwide.",
+                "Pears are a good source of dietary fiber and vitamin C.",
+                "The pear is native to coastal and mildly temperate regions of Europe and Asia.",
+                "In many cultures, pears are a symbol of immortality.",
+                "The pear tree can live for over 250 years.",
+                "China is the world's largest producer of pears.",
+                "Pears are part of the rose family (Rosaceae).",
+                "The word 'pear' appears only once in Shakespeare's works.",
+                "Pears were cultivated in China as early as 2000 BC."
+            ];
+            
+            // Initialize
+            input.focus();
+            
+            // Handle input
+            input.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    executeCommand(input.value);
+                    commandHistory.push(input.value);
+                    historyIndex = commandHistory.length;
+                    input.value = '';
+                } else if (e.key === 'ArrowUp') {
+                    if (historyIndex > 0) {
+                        historyIndex--;
+                        input.value = commandHistory[historyIndex];
+                        e.preventDefault();
+                    }
+                } else if (e.key === 'ArrowDown') {
+                    if (historyIndex < commandHistory.length - 1) {
+                        historyIndex++;
+                        input.value = commandHistory[historyIndex];
+                        e.preventDefault();
+                    } else {
+                        historyIndex = commandHistory.length;
+                        input.value = '';
+                        e.preventDefault();
+                    }
+                }
+            });
+            
+            // Execute command
+            function executeCommand(cmd) {
+                const parts = cmd.split(' ');
+                const command = parts[0].toLowerCase();
+                const args = parts.slice(1);
+                
+                // Add command to output
+                addCommand(cmd);
+                
+                // Execute command if exists
+                if (commands[command]) {
+                    commands[command].execute(args);
+                } else if (command) {
+                    addOutput(`Command not found: ${command}. Type 'help' for available commands.`, 'error');
+                }
+                
+                // Scroll to bottom
+                window.scrollTo(0, document.body.scrollHeight);
             }
-        });
-
-        function executeCommand(command) {
-            if (commands[command]) {
-                if (typeof commands[command] === 'function') {
-                    return commands[command]();
+            
+            // Add command to output
+            function addCommand(cmd) {
+                const commandElement = document.createElement('div');
+                commandElement.className = 'command';
+                commandElement.innerHTML = `<div class="input">${cmd}</div>`;
+                output.appendChild(commandElement);
+            }
+            
+            // Add output to terminal
+            function addOutput(text, className = '') {
+                const outputElement = document.createElement('div');
+                outputElement.className = `output ${className}`;
+                outputElement.innerHTML = text;
+                
+                const commandElement = document.createElement('div');
+                commandElement.className = 'command';
+                commandElement.appendChild(outputElement);
+                output.appendChild(commandElement);
+                
+                // Scroll to bottom
+                window.scrollTo(0, document.body.scrollHeight);
+            }
+            
+            // Show help
+            function showHelp() {
+                let helpText = '<div>Available commands:</div><ul>';
+                for (const [cmd, info] of Object.entries(commands)) {
+                    helpText += `<li><span class="success">${cmd}</span> - ${info.description}</li>`;
+                }
+                helpText += '</ul>';
+                addOutput(helpText);
+            }
+            
+            // About command
+            function about() {
+                const aboutText = `
+                    <div>Welcome to <span class="success">pears.gay</span>!</div>
+                    <div>This is a temporary landing page for my domain!</div>
+                    <div>Type <span class="success">'pear'</span> for a random pear fact or <span class="success">'social'</span> to get contact information.</div>
+                `;
+                addOutput(aboutText);
+            }
+            
+            // Social command
+            function social() {
+                const socialText = `
+                    <div>Connect with me:</div>
+                    <div class="social-links">
+                        <a href="https://twitter.com/peargobbler" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <!--<a href="https://github.com/" target="_blank"><i class="fab fa-github"></i></a>-->
+                        <a href="mailto:vedoynero@gmail.com"><i class="fas fa-envelope"></i></a>
+                    </div>
+                `;
+                addOutput(socialText);
+            }
+            
+            // Pear fact command
+            function pearFact() {
+                const randomArt = pearArts[Math.floor(Math.random() * pearArts.length)];
+                const randomFact = pearFacts[Math.floor(Math.random() * pearFacts.length)];
+                
+                const factText = `
+                    <div class="pear-art">${randomArt}</div>
+                    <div class="info">${randomFact}</div>
+                `;
+                addOutput(factText);
+            }
+            
+            // Clear command
+            function clearTerminal() {
+                output.innerHTML = '';
+            }
+            
+            // Echo command
+            function echo(args) {
+                if (args.length > 0) {
+                    addOutput(args.join(' '));
                 } else {
-                    return commands[command];
+                    addOutput('Usage: echo [text]', 'error');
                 }
-            } else {
-                return `Command not found: ${command}`;
             }
-        }
-
-        function appendToTerminal(text) {
-            const content = document.getElementById('content');
-            content.innerHTML += `<div>${text}</div>`;
-            content.scrollTop = content.scrollHeight;
-        }
+            
+            // LS command
+            function ls() {
+                const files = [
+                    'about.txt',
+                    'pear_facts/',
+                    'social_links/',
+                    'secret_pear_recipe.txt',
+                    'pear_memes/'
+                ];
+                addOutput(files.join('&nbsp;&nbsp;&nbsp;'));
+            }
+            
+            // Whoami command
+            function whoami() {
+                addOutput('visitor', 'success');
+            }
+            
+            // Date command
+            function date() {
+                addOutput(new Date().toString(), 'info');
+            }
+            
+            // Theme command
+            function changeTheme(args) {
+                if (args.length === 0) {
+                    addOutput('Usage: theme [light/dark/retro]', 'error');
+                    return;
+                }
+                
+                const theme = args[0].toLowerCase();
+                let themeText = '';
+                
+                switch(theme) {
+                    case 'light':
+                        document.documentElement.style.setProperty('--bg', '#f0f0f0');
+                        document.documentElement.style.setProperty('--text', '#1a1a1a');
+                        document.documentElement.style.setProperty('--primary', '#2E7D32');
+                        themeText = 'Theme changed to light mode';
+                        break;
+                    case 'dark':
+                        document.documentElement.style.setProperty('--bg', '#1a1a1a');
+                        document.documentElement.style.setProperty('--text', '#f0f0f0');
+                        document.documentElement.style.setProperty('--primary', '#4CAF50');
+                        themeText = 'Theme changed to dark mode';
+                        break;
+                    case 'retro':
+                        document.documentElement.style.setProperty('--bg', '#000000');
+                        document.documentElement.style.setProperty('--text', '#00FF00');
+                        document.documentElement.style.setProperty('--primary', '#FF6EC7');
+                        themeText = 'Theme changed to retro green-on-black';
+                        break;
+                    default:
+                        addOutput(`Unknown theme: ${theme}. Available: light, dark, retro`, 'error');
+                        return;
+                }
+                
+                addOutput(themeText, 'success');
+            }
+            
+            // Exit command
+            function exit() {
+		addOutput('Bye!', 'warning');
+            	setTimeout(() => {
+            	    window.close();
+            	}, 1000);
+            }
+            
+            // Easter egg for "sudo" commands
+            function sudo() {
+                addOutput('visitor is not in the sudoers file. This incident will be reported.', 'error');
+            }
+            
+            // Initial welcome message
+            setTimeout(() => {
+                addOutput('System boot complete. All pear systems nominal.', 'success');
+            }, 1000);
+        });
     </script>
 </body>
 </html>
