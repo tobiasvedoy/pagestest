@@ -1,9 +1,222 @@
-<html>
-  <head>
-    
-  </head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Our Website</title>
+    <!-- Bulma CSS CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .hero.is-fullheight {
+            min-height: 100vh;
+        }
+        .navbar-item img {
+            max-height: 2.5rem;
+        }
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #3273dc;
+        }
+        footer {
+            padding: 3rem 1.5rem;
+        }
+    </style>
+</head>
 <body>
-  <h1>test123</h1>
-</body>
+    <!-- Navigation -->
+    <nav class="navbar is-white is-fixed-top" role="navigation" aria-label="main navigation">
+        <div class="container">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="#">
+                    <img src="https://via.placeholder.com/150x50?text=Logo" alt="Company Logo">
+                </a>
 
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasic">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+
+            <div id="navbarBasic" class="navbar-menu">
+                <div class="navbar-end">
+                    <a class="navbar-item is-active" href="#">
+                        Home
+                    </a>
+
+                    <a class="navbar-item" href="#">
+                        Features
+                    </a>
+
+                    <a class="navbar-item" href="#">
+                        About
+                    </a>
+
+                    <a class="navbar-item" href="#">
+                        Contact
+                    </a>
+
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            <a class="button is-primary">
+                                <strong>Sign up</strong>
+                            </a>
+                            <a class="button is-light">
+                                Log in
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero is-primary is-fullheight">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <div class="columns is-centered">
+                    <div class="column is-8">
+                        <h1 class="title is-1">
+                            Welcome to Our Platform
+                        </h1>
+                        <h2 class="subtitle is-4">
+                            We provide innovative solutions to grow your business
+                        </h2>
+                        <div class="buttons is-centered mt-5">
+                            <a href="#" class="button is-large is-white">
+                                Get Started
+                            </a>
+                            <a href="#" class="button is-large is-light is-outlined">
+                                Learn More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section">
+        <div class="container">
+            <div class="has-text-centered mb-6">
+                <h2 class="title is-2">Our Features</h2>
+                <p class="subtitle is-5">Everything you need to succeed</p>
+            </div>
+
+            <div class="columns is-multiline">
+                <div class="column is-4">
+                    <div class="box has-text-centered p-6">
+                        <div class="feature-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3 class="title is-4">Fast Performance</h3>
+                        <p>Our platform is optimized for speed and efficiency, ensuring your work gets done without delays.</p>
+                    </div>
+                </div>
+
+                <div class="column is-4">
+                    <div class="box has-text-centered p-6">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="title is-4">Secure Data</h3>
+                        <p>We prioritize your data security with enterprise-grade encryption and regular backups.</p>
+                    </div>
+                </div>
+
+                <div class="column is-4">
+                    <div class="box has-text-centered p-6">
+                        <div class="feature-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h3 class="title is-4">24/7 Support</h3>
+                        <p>Our dedicated support team is available around the clock to assist you with any issues.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="section is-medium has-background-light">
+        <div class="container has-text-centered">
+            <div class="columns is-centered">
+                <div class="column is-8">
+                    <h2 class="title is-2">Ready to get started?</h2>
+                    <p class="subtitle is-4 mb-5">Join thousands of satisfied customers today.</p>
+                    <a href="#" class="button is-primary is-large">Sign Up Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-4">
+                    <h3 class="title is-5">About Us</h3>
+                    <p>We're a team of passionate professionals dedicated to creating the best solutions for our customers.</p>
+                </div>
+                <div class="column is-2">
+                    <h3 class="title is-5">Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Features</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">About</a></li>
+                    </ul>
+                </div>
+                <div class="column is-2">
+                    <h3 class="title is-5">Legal</h3>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                    </ul>
+                </div>
+                <div class="column is-4">
+                    <h3 class="title is-5">Contact Us</h3>
+                    <p><i class="fas fa-envelope mr-2"></i> info@example.com</p>
+                    <p><i class="fas fa-phone mr-2"></i> (123) 456-7890</p>
+                    <div class="social-icons mt-3">
+                        <a href="#" class="mr-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="mr-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="mr-3"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="mr-3"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="has-text-centered mt-5">
+                <p>&copy; 2023 Your Company. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for mobile menu toggle -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Get all "navbar-burger" elements
+            const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+            // Add a click event on each of them
+            $navbarBurgers.forEach(el => {
+                el.addEventListener('click', () => {
+                    // Get the target from the "data-target" attribute
+                    const target = el.dataset.target;
+                    const $target = document.getElementById(target);
+
+                    // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+                    el.classList.toggle('is-active');
+                    $target.classList.toggle('is-active');
+                });
+            });
+        });
+    </script>
+</body>
 </html>
